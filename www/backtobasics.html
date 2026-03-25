@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Back To Basics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="transparent.css" />
+    <style>
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        margin: 0;
+        background-color: #f8f9fa;
+        font-size: 13px;
+      }
+      .page-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8px 12px;
+        background-color: #31353a;
+        color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .page-header .icon {
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+      .page-header h1 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 300;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 72px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hidden {
+        display: none !important;
+      }
+      a.icon-link,
+      a.icon-link:visited {
+        text-decoration: none;
+        color: inherit;
+      }
+      .full-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 500;
+        background-color: #f8f9fa;
+        overflow-x: hidden;
+      }
+      .loading-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+        z-index: 9999;
+        transition: opacity 0.5s;
+      }
+      .loading-page.hidden {
+        display: none;
+      }
+      .loading-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loading-seal {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+      }
+      .loading-spinner {
+        width: 70px;
+        height: 70px;
+        border: 4px solid rgba(228, 94, 32, 0.2);
+        border-top: 3px solid #e37644;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .tab-bar {
+        display: flex;
+        background-color: #f1f1f1;
+        padding: 6px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+      .tab-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 6px;
+        text-decoration: none;
+        color: #777;
+        font-size: 0.85rem;
+        font-weight: 400;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .tab-item.active {
+        background-color: #ffffff;
+        color: #000;
+        font-weight: 400;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+      .tab-item i {
+        font-size: 1rem;
+        margin-right: 5px;
+      }
+      .content-area {
+        padding: 14px;
+      }
+      .no-record-card {
+        background-color: #ffffff;
+        padding: 24px 12px;
+        text-align: center;
+        border-radius: 6px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        color: #555;
+        font-size: 0.95rem;
+        font-weight: 300;
+      }
+      .content-pane {
+        display: none;
+      }
+      .content-pane.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading-page" class="full-page loading-page">
+      <div class="loading-container">
+        <img src="images/seal.svg" alt="University Seal" class="loading-seal" />
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <div id="btb-page" class="full-page">
+      <header class="page-header">
+        <a href="index.html" class="icon-link">
+          <i class="bx bx-arrow-back icon"></i>
+        </a>
+        <h1>Back To Basics</h1>
+      </header>
+
+      <nav class="tab-bar">
+        <a class="tab-item active" id="tab-current">
+          <i class="bx bx-calendar"></i> Current Week
+        </a>
+        <a class="tab-item" id="tab-archives">
+          <i class="bx bx-archive"></i> Archives
+        </a>
+      </nav>
+
+      <main class="content-area">
+        <div id="content-current" class="content-pane active">
+          <div class="no-record-card">No record found</div>
+        </div>
+
+        <div id="content-archives" class="content-pane">
+          <div class="no-record-card">No record found</div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.getElementById("loading-page");
+        if (loader) {
+          loader.style.opacity = "0";
+          setTimeout(() => {
+            loader.classList.add("hidden");
+          }, 500);
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const tabCurrent = document.getElementById("tab-current");
+        const tabArchives = document.getElementById("tab-archives");
+
+        const contentCurrent = document.getElementById("content-current");
+        const contentArchives = document.getElementById("content-archives");
+
+        tabCurrent.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (!tabCurrent.classList.contains("active")) {
+            tabCurrent.classList.add("active");
+            tabArchives.classList.remove("active");
+
+            contentCurrent.classList.add("active");
+            contentArchives.classList.remove("active");
+          }
+        });
+
+        tabArchives.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (!tabArchives.classList.contains("active")) {
+            tabArchives.classList.add("active");
+            tabCurrent.classList.remove("active");
+
+            contentArchives.classList.add("active");
+            contentCurrent.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

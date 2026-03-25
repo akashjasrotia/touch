@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment Marks</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="transparent.css" />
+
+    <style>
+      :root {
+        --page-bg: #f0f2f5;
+        --card-bg: #ffffff;
+        --header-dark-bg: #303134;
+        --header-dark-text: #e8eaed;
+        --font-primary: #202124;
+        --font-secondary: #5f6368;
+        --border-color: #e0e0e0;
+        --accent-orange: #f57c00;
+        --accent-blue: #1a73e8;
+        --theme-grad: linear-gradient(to right, #ff8373, #fed278);
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+          overflow-x: hidden;
+      }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--page-bg);
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        color: var(--font-primary);
+        font-size: 13px;
+      }
+      .page-container {
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 8px 12px;
+        background-color: var(--header-dark-bg);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+      .page-header a {
+         color: var(--header-dark-text);
+         text-decoration: none;
+         display: inline-flex;
+         align-items: center;
+      }
+      .page-header .back-arrow {
+        font-size: 1.6rem;
+        cursor: pointer;
+      }
+      .page-header .title {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--header-dark-text);
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .content-container {
+        padding: 10px;
+      }
+      .courses-filter {
+        margin-bottom: 10px;
+      }
+      .courses-filter label {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--font-secondary);
+        margin-bottom: 6px;
+        font-weight: 300;
+      }
+      .dropdown {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 8px 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 300;
+      }
+      .marks-tabs {
+        display: flex;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 8px 6px;
+        position: relative;
+        font-size: 0.85rem;
+        color: var(--font-secondary);
+        border-right: 1px solid var(--border-color);
+        font-weight: 300;
+        cursor: pointer;
+      }
+      .tab:last-child {
+        border-right: none;
+      }
+      .tab.active {
+        background: #f8f9fa;
+        color: var(--font-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        margin: -1px;
+        font-weight: 400;
+      }
+      .tab .count {
+        display: block;
+        font-size: 0.7rem;
+        background: var(--theme-grad);
+        color: #000;
+        font-weight: 400;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        border-radius: 50%;
+        margin: 4px auto 0;
+      }
+      .marks-card {
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+      .marks-card .course-name {
+        font-size: 1rem;
+        font-weight: 300;
+        margin-bottom: 10px;
+      }
+      .marks-card .test-name {
+        font-size: 0.9rem;
+        margin-bottom: 4px; 
+        font-weight: 300;
+      }
+      .marks-card .reason {
+        font-size: 0.85rem;
+        color: var(--accent-orange);
+        margin-bottom: 8px;
+        font-weight: 300;
+      }
+      .marks-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 8px;
+        border-top: 1px solid #f0f0f0;
+      }
+      .marks-footer .marks-value {
+        font-size: 0.95rem;
+        font-weight: 300;
+      }
+      .download-btn {
+        background: none;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+        font-weight: 400;
+        color: var(--font-secondary);
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      .download-btn i {
+        font-size: 0.9rem;
+        margin-right: 6px;
+      }
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+      .modal-overlay.hidden {
+        display: none;
+      }
+      .modal-content {
+        background: var(--card-bg);
+        border-radius: 6px;
+        width: 85%;
+        max-width: 320px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 0.2s ease-out;
+      }
+      .modal-body {
+        padding: 12px;
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      .radio-option:last-child {
+        margin-bottom: 0;
+      }
+      .radio-option input[type="radio"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--font-secondary);
+        border-radius: 50%;
+        margin-right: 10px;
+        position: relative;
+        outline: none;
+        flex-shrink: 0;
+      }
+      .radio-option input[type="radio"]:checked {
+        border-color: var(--accent-orange);
+      }
+      .radio-option input[type="radio"]:checked::before {
+        content: "";
+        display: block;
+        width: 8px;
+        height: 8px;
+        background: var(--accent-orange);
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .radio-option label {
+        font-size: 0.9rem;
+        font-weight: 300;
+      }
+      .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 4px 8px;
+      }
+      .modal-footer button {
+        background: none;
+        border: none;
+        padding: 8px;
+        font-size: 0.85rem;
+        color: var(--accent-orange);
+        cursor: pointer;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .full-page {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 500;
+      }
+      .loading-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+      .loading-page.hidden {
+        display: none;
+      }
+      .loading-container {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .loading-seal {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+      }
+      .loading-spinner {
+        width: 70px;
+        height: 70px;
+        border: 4px solid rgba(228, 94, 32, 0.2);
+        border-top: 3px solid #e37644;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="loading-page" class="full-page loading-page">
+      <div class="loading-container">
+        <img src="images/seal.svg" alt="University Seal" class="loading-seal" />
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <div class="page-container">
+      <header class="page-header">
+        <a href="index.html" class="back-arrow"
+          ><i class="bx bx-arrow-back"></i
+        ></a>
+        <h1 class="title">Assignment Marks</h1>
+      </header>
+
+      <main class="content-container">
+        <div class="courses-filter">
+          <label>Courses</label>
+          <div class="dropdown" id="courseDropdown">
+            <span>ALL</span>
+            <i class="bx bx-chevron-down"></i>
+          </div>
+        </div>
+
+        <div class="marks-tabs">
+          <div class="tab active">
+            Assignment
+            <span class="count">1</span>
+          </div>
+          <div class="tab">
+            Practical
+            <span class="count">0</span>
+          </div>
+          <div class="tab">
+            Reading
+            <span class="count">0</span>
+          </div>
+        </div>
+
+        <div class="marks-list">
+          <div class="marks-card">
+            <h3 class="course-name">PEV301:VERBAL ABILITY</h3>
+            <p class="test-name">Test 1</p>
+            <p class="reason">Reason : Not yet evaluated</p>
+            <div class="marks-footer">
+              <span class="marks-value">Marks: /30</span>
+              <button class="download-btn">
+                <i class="bx bx-cloud-download"></i>Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="modal-overlay hidden" id="courseModal">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="radio-option">
+            <input type="radio" id="all" name="course" value="all" checked />
+            <label for="all">ALL</label>
+          </div>
+          <div class="radio-option">
+            <input
+              type="radio"
+              id="pev301"
+              name="course"
+              value="pev301"
+            />
+            <label for="pev301">PEV301:VERBAL ABILITY</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cancelBtn">CANCEL</button>
+          <button id="okBtn">OK</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('loading-page');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => {
+            loader.classList.add('hidden');
+          }, 500);
+        }
+      });
+
+      const courseDropdown = document.getElementById("courseDropdown");
+      const courseModal = document.getElementById("courseModal");
+      const cancelBtn = document.getElementById("cancelBtn");
+      const okBtn = document.getElementById("okBtn");
+
+      function openModal() {
+        courseModal.classList.remove("hidden");
+      }
+
+      function closeModal() {
+        courseModal.classList.add("hidden");
+      }
+
+      courseDropdown.addEventListener("click", openModal);
+      cancelBtn.addEventListener("click", closeModal);
+      okBtn.addEventListener("click", closeModal);
+      courseModal.addEventListener("click", function (event) {
+        if (event.target === courseModal) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>

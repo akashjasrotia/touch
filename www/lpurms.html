@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RMS Declaration</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --page-bg: #f8f9fa;
+        --header-bg: #ffffff;
+        --header-text: #333;
+        --card-bg: #ffffff;
+        --text-primary: #333;
+        --text-secondary: #777;
+        --nav-active-color: #f39c12;
+        --nav-inactive-color: #999;
+        --border-color: #e0e0e0;
+        --main-grad: linear-gradient(to right, #ff8373, #fed278); 
+        --checkbox-color: #ff8373;
+        --checkbox-offset: -2px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+
+      body {
+        background-color: var(--page-bg);
+        color: var(--header-text);
+        font-size: 14px;
+      }
+
+      .full-page {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .page-header {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        min-height: 56px;
+        background-color: var(--header-bg);
+        color: var(--header-text);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--border-color);
+      }
+ 
+      .hamburger-menu {
+        -webkit-tap-highlight-color: transparent;
+        width: 26px;
+        height: 18px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        position: relative;
+        z-index: 201;
+        align-items: center;
+        flex-shrink: 0;
+        margin-right: 8px;
+      }
+      .hamburger-line {
+        display: block;
+        width: 100%;
+        height: 2.6px;
+        border-radius: 2px;
+        background: linear-gradient(to right, #ff8373, #fed278);
+        transition: width 0.24s ease, transform 0.18s ease;
+      }
+      .hamburger-line:nth-child(3) {
+        width: 60%;
+        align-self: flex-start;
+      }
+      .page-header > .icon,
+      .page-header i.icon { display: none !important; }
+
+      .page-header h1 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 400;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background: rgba(0,0,0,0.45);
+        z-index: 90;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .25s ease, visibility .25s;
+      }
+      .overlay.visible { opacity:1; visibility:visible; }
+      .page-side-drawer {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        width: 85%;
+        max-width: 320px;
+        height: 100%;
+        background: #fff;
+        z-index: 95;
+        box-shadow: 2px 0 12px rgba(0,0,0,0.12);
+        transition: left 0.28s ease;
+        overflow-y: auto;
+        padding: 16px;
+      }
+      .page-side-drawer.open { left: 0; }
+      body.drawer-open .page-header,
+      body.drawer-open .declaration-container { filter: blur(4px); }
+      .page-side-drawer a { display:block; padding:10px 8px; color:#333; text-decoration:none; border-bottom:1px solid #f0f0f0; }
+
+      .declaration-container {
+        flex-grow: 1;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; 
+        padding-bottom: 75px;
+      }
+      
+      .declaration-card {
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 400px;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+      }
+
+      .declaration-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        line-height: 1.4;
+      }
+
+      .checkbox-icon {
+        font-size: 1.3rem;
+        color: var(--checkbox-color);
+        margin-right: 12px;
+        flex-shrink: 0;
+        align-self: flex-start;
+        line-height: 1;
+        transform: translateY(var(--checkbox-offset));
+      }
+
+      .declaration-text {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: var(--text-primary);
+        line-height: 1.4;
+      }
+      
+      .agree-button {
+        background: var(--main-grad);
+        color: #000;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        width: 80%;
+        max-width: 300px;
+        margin-top: 25px;
+        box-shadow: 0 4px 10px rgba(255, 131, 115, 0.4);
+        transition: background 0.3s;
+      }
+      
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+        z-index: 100;
+        transition: filter 0.3s ease;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #999;
+        text-decoration: none;
+        font-size: 0.75rem;
+      }
+
+      .nav-item i {
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+      }
+
+      .nav-item.active {
+        color: #f39c12;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="overlay" class="overlay"></div>
+    <aside id="page-side-drawer" class="page-side-drawer" aria-hidden="true">
+      <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="happenings.html">Happenings</a>
+        <a href="lpurms.html">RMS</a>
+        <a href="quickquiz.html">Quick Quiz</a>
+      </nav>
+    </aside>
+ 
+     <div id="rms-declaration-page" class="full-page">
+       <header class="page-header">
+        <div id="hamburger-menu" class="hamburger-menu" aria-label="Open menu" role="button" tabindex="0" aria-expanded="false">
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+        </div>
+         <h1>RMS</h1>
+       </header>
+ 
+      <main class="declaration-container">
+        <div class="declaration-card">
+          <div class="declaration-item">
+            <i class="bx bxs-checkbox-checked checkbox-icon"></i>
+            <span class="declaration-text">
+              I have not shared my UMS password with anyone.
+            </span>
+          </div>
+
+          <div class="declaration-item">
+            <i class="bx bxs-checkbox-checked checkbox-icon"></i>
+            <span class="declaration-text">
+              I am responsible for the content typed in query related things.
+            </span>
+          </div>
+
+          <div class="declaration-item">
+            <i class="bx bxs-checkbox-checked checkbox-icon"></i>
+            <span class="declaration-text">
+              I understand that necessary disciplinary action can be initiated against me in case of use of derogatory words or false statements against any Student/Faculty/Staff/Higher Authority.
+            </span>
+          </div>
+
+          <div class="declaration-item">
+            <i class="bx bxs-checkbox-checked checkbox-icon"></i>
+            <span class="declaration-text">
+              The information given by me regarding the complaint/request is true to the best of my knowledge and if found false/ wrong, necessary disciplinary action can be initiated against me.
+            </span>
+          </div>
+
+          <div class="declaration-item">
+            <i class="bx bxs-checkbox-checked checkbox-icon"></i>
+            <span class="declaration-text">
+              I have read the policy / UMS Notification related to the concerned matter already before submitting the RMS and I am unable to find the answer related to my query.
+            </span>
+          </div>
+          
+          <button class="agree-button">Agree & Proceed</button>
+        </div>
+      </main>
+
+      <nav class="bottom-nav">
+        <a href="index.html" class="nav-item active"
+          ><i class="bx bx-grid-alt"></i><span>Dashboard</span></a
+        >
+        <a href="happenings.html" class="nav-item"
+          ><i class="bx bx-news"></i><span>Happenings</span></a
+        >
+        <a href="lpurms.html" class="nav-item"
+          ><i class="bx bx-check-square"></i><span>RMS</span></a
+        >
+        <a href="quickquiz.html" class="nav-item"
+          ><i class="bx bx-list-ol"></i><span>Quick Quiz</span></a
+        >
+      </nav>
+    </div>
+ 
+    <script>
+      (function () {
+        const ham = document.getElementById('hamburger-menu');
+        const drawer = document.getElementById('page-side-drawer');
+        const overlay = document.getElementById('overlay');
+        function openDrawer() {
+          drawer.classList.add('open');
+          overlay.classList.add('visible');
+          document.body.classList.add('drawer-open');
+          drawer.setAttribute('aria-hidden','false');
+        }
+        function closeDrawer() {
+          drawer.classList.remove('open');
+          overlay.classList.remove('visible');
+          document.body.classList.remove('drawer-open');
+          drawer.setAttribute('aria-hidden','true');
+        }
+        if (ham) ham.addEventListener('click', () => {
+          if (drawer.classList.contains('open')) closeDrawer();
+          else openDrawer();
+        });
+        if (overlay) overlay.addEventListener('click', closeDrawer);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+      })();
+    </script>
+    <script>
+      (function () {
+        const ham = document.getElementById("hamburger-menu");
+        if (!ham) return;
+        ham.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            ham.click();
+          }
+        });
+      })();
+    </script>
+    <script>
+      (function () {
+        const navItems = document.querySelectorAll('.bottom-nav .nav-item');
+        if (!navItems.length) return;
+        const currentFile = (location.pathname.split('/').pop() || 'lpurms.html').toLowerCase();
+
+        function setActiveByLocation() {
+          navItems.forEach(a => {
+            const href = a.getAttribute('href') || '';
+            const target = (href === '#' ? 'index.html' : href.split('/').pop()).toLowerCase();
+            a.classList.toggle('active', target === currentFile);
+          });
+        }
+
+        navItems.forEach(a => {
+          a.addEventListener('click', () => {
+            navItems.forEach(n => n.classList.remove('active'));
+            a.classList.add('active');
+          });
+        });
+
+        setActiveByLocation();
+      })();
+    </script>
+  </body>
+</html>

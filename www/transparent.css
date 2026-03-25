@@ -1,0 +1,243 @@
+:root {
+  --unified-header-height: 56px;
+  --unified-header-padding: 8px 12px;
+  --unified-header-icon-size: 1.6rem;
+  --unified-header-title-size: 1rem;
+  --unified-header-title-weight: 400;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  touch-action: pan-y;
+  -ms-touch-action: pan-y;
+  overscroll-behavior: contain;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+input, textarea, select, button { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+.main-header,
+.page-header,
+.announcement-header,
+.attendance-header,
+.fee-header,
+.mess-coupon-header,
+.header {
+  min-height: var(--unified-header-height);
+  padding: var(--unified-header-padding);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.main-header .icon,
+.page-header .icon,
+.page-header .back-arrow,
+.announcement-header .back-arrow,
+.attendance-header .back-arrow,
+.fee-header .back-arrow,
+.mess-coupon-header .back-arrow,
+.icon,
+.bx-arrow-back,
+.bx-x {
+  font-size: var(--unified-header-icon-size) !important;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-header .header-title,
+.page-header .title,
+.announcement-header .title,
+.attendance-header .title,
+.fee-header .title,
+.mess-coupon-header .title,
+.page-header h1,
+.announcement-header h1 {
+  font-size: var(--unified-header-title-size) !important;
+  font-weight: var(--unified-header-title-weight) !important;
+  margin: 0;
+  line-height: 1;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  max-width: calc(100% - 84px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.main-header > *:first-child,
+.page-header > *:first-child,
+.announcement-header > *:first-child {
+  flex: 0 0 auto;
+}
+
+.page-header a,
+.announcement-header a,
+.attendance-header a,
+.fee-header a,
+.mess-coupon-header a,
+.header a,
+.page-header a.icon-link,
+.announcement-header a.icon-link,
+.icon-link,
+a.icon-link {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent;
+  color: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.page-header a:focus,
+.announcement-header a:focus,
+.page-header a:active,
+.announcement-header a:active,
+.icon-link:focus,
+.icon-link:active {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 420px) {
+  :root {
+    --unified-header-icon-size: 1.45rem;
+    --unified-header-title-size: 0.95rem;
+    --unified-header-height: 52px;
+  }
+  .main-header,
+  .page-header {
+    padding: 8px 10px;
+  }
+}
+
+.page-header > .icon,
+.page-header i.icon,
+.page-header .bx-menu,
+.page-header .bx {
+}
+
+html, body {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
+}
+
+* {
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-header,
+.main-header,
+.bottom-nav,
+.sidebar,
+.overlay,
+.page-side-drawer,
+.loading-page,
+.full-page,
+.modal-overlay,
+.tiles-grid,
+.tile,
+.tile-edurev,
+.happening-item,
+.message-card,
+.request-card,
+.course-card,
+.semester-card,
+.progress-circle,
+.progress-circle-large,
+.progress-circle-small,
+.timetable-card,
+.add-button,
+.add-button-float,
+.apply-btn,
+.details-btn,
+.agree-button,
+.submit-btn,
+.leave-slip-button,
+.dropdown-select,
+.nav-item {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+body,
+.full-page,
+.messages-list,
+.request-list,
+.happenings-list,
+.course-list-container,
+.transaction-list,
+.content-area,
+.main-content,
+.page-container,
+.attendance-container {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+a, button {
+  touch-action: manipulation;
+}
+
+button:active,
+.apply-btn:active,
+.details-btn:active,
+.agree-button:active,
+.submit-btn:active,
+.add-button:active,
+.add-button-float:active,
+.leave-slip-button:active,
+.dropdown-select:active,
+.nav-item:active,
+.tile:active,
+.tile-edurev:active,
+.message-card:active,
+.happening-item:active,
+.request-card:active,
+.course-card:active {
+  transform: translateZ(0) scale(0.98);
+  opacity: 0.95;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.tiles-grid .tile,
+.tiles-grid a.tile {
+  min-height: clamp(150px, 29vw, 184px) !important;
+}
+
+@media (min-width: 420px) {
+  .tiles-grid .tile,
+  .tiles-grid a.tile {
+    min-height: clamp(160px, 27vw, 192px) !important;
+  }
+}
+
+.gpu {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}

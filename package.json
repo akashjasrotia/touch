@@ -1,0 +1,19 @@
+{
+  "name": "touch-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare-web": "rm -rf www && mkdir -p www && cp -R index.html *.html styles.css transparent.css script.js registration.js images videos www/ || true",
+    "cap:init": "npx cap init TouchApp com.example.touchapp --web-dir=www",
+    "cap:add-android": "npx cap add android",
+    "cap:copy": "npx cap copy",
+    "cap:open-android": "npx cap open android"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.2.0",
+    "@capacitor/cli": "^8.2.0"
+  }
+}

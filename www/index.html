@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="transparent.css" />
+
+    <style>
+      .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        white-space: normal;
+      }
+      .sidebar-menu a i {
+        min-width: 22px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .sidebar-menu {
+        padding-bottom: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <a href="profile.html" class="sidebar-header" id="sidebar-profile-link">
+          <img
+            src="images/avdesh.png"
+            alt="User Profile Picture"
+            class="profile-picture"
+          />
+          <h3 class="profile-name">Avdesh Jadon</h3>
+          <p class="profile-id">12319278</p>
+          <p class="profile-details">
+            P132:B.Tech. (Computer Science and<br />Engineering)(2023)
+          </p>
+        </a>
+        <div class="sidebar-body">
+          <div class="search-container">
+            <div class="search-box">
+              <i class="bx bx-search"></i>
+              <input type="text" id="sidebar-search" placeholder="Search" />
+            </div>
+          </div>
+          <nav class="sidebar-menu">
+            <a href="announcement.html"
+              ><i class="bx bxs-megaphone"></i> Announcements</a
+            >
+            <a href="attendance.html"><i class="bx bx-task"></i> Attendance</a>
+            <a href="#"><i class="bx bx-user"></i> Alumni Mentor Selection</a>
+            <a href="assignment.html"
+              ><i class="bx bx-edit-alt"></i> Assignment (CA)</a
+            >
+            <a href="backtobasics.html"
+              ><i class="bx bx-book-reader"></i> Back to Basics</a
+            >
+            <a href="#"><i class="bx bx-list-ul"></i> Backlog Registration</a>
+            <a href="#"><i class="bx bx-calendar-plus"></i> Book Appointment</a>
+            <a href="#"><i class="bx bx-key"></i> Change UMS Password</a>
+            <a href="#"
+              ><i class="bx bx-file-blank"></i> Continue Exit Undertaking</a
+            >
+            <a href="#"><i class="bx bx-first-aid"></i> Doctor Appointment</a>
+            <a href="#"><i class="bx bx-upload"></i> Document Upload</a>
+            <a href="#"><i class="bx bx-group"></i> Electives Polling</a>
+            <a href="#"><i class="bx bx-transfer-alt"></i> Entry Exit Logs</a>
+            <a href="#"
+              ><i class="bx bx-chalkboard"></i> Evaluation of Teaching
+              Internship</a
+            >
+            <a href="events.html"
+              ><i class="bx bx-calendar-event"></i> Events</a
+            >
+            <a href="10thrives.html"><i class="bx bx-star"></i> 10 to Thrive</a>
+            <a href="#"
+              ><i class="bx bx-calendar-check"></i> Event Attendance</a
+            >
+            <a href="#"
+              ><i class="bx bx-qr-scan"></i> Event Attendance QR Scanner</a
+            >
+            <a href="#"><i class="bx bx-clipboard"></i> Exam Attendance</a>
+            <a href="#"><i class="bx bx-rupee"></i> Fee Payment</a>
+            <a href="#"><i class="bx bx-time"></i> Fee Payment Schedule</a>
+            <a href="fee-statement.html"
+              ><i class="bx bx-file-find"></i> Fee Statement</a
+            >
+            <a href="#"
+              ><i class="bx bx-message-rounded-dots"></i> Feedback on Mentor
+              Meeting</a
+            >
+            <a href="#"><i class="bx bx-store-alt"></i> Food Shops</a>
+            <a href="#"
+              ><i class="bx bx-microphone"></i> Guest Lecture/Workshop
+              Feedback</a
+            >
+            <a href="#"><i class="bx bx-door-open"></i> Hostel Entry Exit</a>
+            <a href="hostelleaveslip.html"
+              ><i class="bx bx-trip"></i> Hostel Leave Slip</a
+            >
+            <a href="#"><i class="bx bx-box"></i> Inventory</a>
+            <a href="#"><i class="bx bx-vial"></i> Lab Resource Feedback</a>
+            <a href="#"
+              ><i class="bx bx-headphone"></i> Language Lab Slot Booking</a
+            >
+            <a href="#"><i class="bx bxs-t-shirt"></i> Laundry</a>
+            <a href="#"><i class="bx bx-user-voice"></i> Lecture Feedback</a>
+            <a href="#"
+              ><i class="bx bx-book-open"></i> Library Resource Feedback</a
+            >
+            <a href="#"><i class="bx bx-search-alt"></i> Library Search</a>
+            <a href="#"
+              ><i class="bx bx-calendar-heart"></i> List of Holidays</a
+            >
+            <a href="#"><i class="bx bx-wrench"></i> Make Up Adjustment</a>
+            <a href="#"
+              ><i class="bx bx-user-check"></i> Mentor Meeting Details</a
+            >
+            <a href="#"><i class="bx bx-restaurant"></i> Mess Food Feedback</a>
+            <a href="#" id="tokens-link"
+              ><i class="bx bx-coin-stack"></i><span>Tokens</span></a
+            >
+            <a href="#" id="mess-scanner-link"
+              ><i class="bx bx-camera"></i> Mess Food Scanner</a
+            >
+            <a href="#"
+              ><i class="bx bx-layer"></i> Open Minor Area Preference</a
+            >
+            <a href="#"><i class="bx bx-run"></i> PEP Activities</a>
+            <a href="#"
+              ><i class="bx bx-barcode-reader"></i> Placement Barcode Scanner</a
+            >
+            <a href="#"><i class="bx bx-briefcase-alt"></i> Placement Drive</a>
+            <a href="#"><i class="bx bx-poll"></i> Placement Drive Summary</a>
+            <a href="#"><i class="bx bx-train"></i> Railway Concession Form</a>
+            <a href="#"><i class="bx bx-revision"></i> ReAppear Registration</a>
+            <a href="results.html"
+              ><i class="bx bx-line-chart"></i> Report Card</a
+            >
+            <a href="#"
+              ><i class="bx bx-file"></i> Residential Reporting Slip</a
+            >
+            <a href="rms.html"><i class="bx bx-task"></i> RMS Request Status</a>
+            <a href="#"><i class="bx bx-qr"></i> RMS Scanner</a>
+            <a href="#"
+              ><i class="bx bx-bulb"></i> Skill Development Feedback</a
+            >
+            <a href="#"
+              ><i class="bx bx-bowl-rice"></i> Special Food Services</a
+            >
+            <a href="#"
+              ><i class="bx bx-user-pin"></i> Student Class Feedback</a
+            >
+            <a href="#"
+              ><i class="bx bx-message-detail"></i> Student Feedback</a
+            >
+            <a href="#"><i class="bx bx-user-x"></i> Teacher on Leave</a>
+            <a href="#"><i class="bx bx-calendar"></i> Time table</a>
+            <a href="#"><i class="bx bx-bus"></i> Transport Preference</a>
+            <a href="#"
+              ><i class="bx bx-headphone"></i> Uni Hospital Help Line</a
+            >
+            <a href="#"><i class="bx bx-store"></i> Vendor Facility Search</a>
+            <a href="#"><i class="bx bx-id-card"></i> View Marks</a>
+            <a href="#"><i class="bx bx-map-alt"></i> Virtual Tour</a>
+          </nav>
+        </div>
+        <div class="sidebar-footer">
+          <button class="logout-button">
+            LOGOUT <i class="bx bx-log-out"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div id="overlay" class="overlay"></div>
+
+    <header class="main-header">
+      <div id="hamburger-menu" class="hamburger-menu">
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+        <div class="hamburger-line"></div>
+      </div>
+      <h1 class="header-title">Dashboard</h1>
+      <div class="header-actions">
+        <a href="messages.html" class="notification-icon">
+          <i class="bx bx-bell"></i>
+          <span class="notification-badge">12</span>
+        </a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="content-wrapper">
+        <section class="timetable-section">
+          <div class="section-header">
+            <h2>Today's Timetable</h2>
+            <a
+              href="https://yourdost.com/userDashboard/home"
+              style="text-decoration: none"
+            >
+              <button class="cta-button">Your Dost</button>
+            </a>
+          </div>
+          <div class="horizontal-scroll-container">
+            <div class="timetable-card">
+              <div class="card-body">
+                <div class="card-text">
+                  <span class="course-code">CSE377</span>
+                  <span class="room-number">37-705</span>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="card-icon">
+                  <img
+                    src="images/book.png"
+                    alt="Course Book"
+                    class="card-icon-img"
+                  />
+                </div>
+              </div>
+              <div class="card-header">11-12 AM</div>
+            </div>
+            <div class="timetable-card">
+              <div class="card-body">
+                <div class="card-text">
+                  <span class="course-code">CSE377</span>
+                  <span class="room-number">37-705</span>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="card-icon">
+                  <img
+                    src="images/book.png"
+                    alt="Course Book"
+                    class="card-icon-img"
+                  />
+                </div>
+              </div>
+              <div class="card-header">12-01 PM</div>
+            </div>
+            <div class="timetable-card">
+              <div class="card-body">
+                <div class="card-text">
+                  <span class="course-code">PEV301</span>
+                  <span class="room-number">37-609</span>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="card-icon">
+                  <img
+                    src="images/book.png"
+                    alt="Course Book"
+                    class="card-icon-img"
+                  />
+                </div>
+              </div>
+              <div class="card-header">02-03 PM</div>
+            </div>
+            <div class="timetable-card">
+              <div class="card-body">
+                <div class="card-text">
+                  <span class="course-code">PEV301</span>
+                  <span class="room-number">37-609</span>
+                  <div class="divider-line"></div>
+                </div>
+                <div class="card-icon">
+                  <img
+                    src="images/book.png"
+                    alt="Course Book"
+                    class="card-icon-img"
+                  />
+                </div>
+              </div>
+              <div class="card-header">03-04 PM</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="dashboard-tiles-section">
+          <div class="section-header">
+            <div>
+              <h2>Add More Tiles</h2>
+              <p>Click on the plus button to add menu grids.</p>
+            </div>
+            <button class="add-button"><i class="bx bx-plus"></i></button>
+          </div>
+          <div class="tiles-grid">
+            <a href="announcement.html" class="tile"
+              ><span class="tile-badge">9</span
+              ><img
+                src="images/ann.png"
+                alt="Announcements Icon"
+                class="tile-image"
+              /><span class="tile-label">Announce</span></a
+            >
+            <a href="edurevolution.html" class="tile"
+              ><img
+                src="images/edu.png"
+                alt="Edu Revolution Icon"
+                class="tile-image"
+              /><span class="tile-label">Edu Revolution</span></a
+            >
+            <a href="fee-statement.html" class="tile"
+              ><img
+                src="images/fee.png"
+                alt="Fee Statement Icon"
+                class="tile-image"
+              /><span class="tile-label">Fee Statement</span></a
+            >
+            <a href="attendance.html" class="tile"
+              ><span class="tile-badge">80%</span
+              ><img
+                src="images/att.png"
+                alt="Attendance Icon"
+                class="tile-image"
+              /><span class="tile-label">Attendance</span></a
+            >
+            <a href="assignment.html" class="tile"
+              ><span class="tile-badge">2</span
+              ><img
+                src="images/ass.png"
+                alt="Assignment Icon"
+                class="tile-image"
+              /><span class="tile-label">Assignment</span></a
+            >
+            <a href="results.html" class="tile"
+              ><span class="tile-badge">6.62</span
+              ><img
+                src="images/results.png"
+                alt="Results Icon"
+                class="tile-image"
+              /><span class="tile-label">Results</span></a
+            >
+            <a href="exam.html" class="tile"
+              ><span class="tile-badge">1</span
+              ><img
+                src="images/exams.png"
+                alt="Exams Icon"
+                class="tile-image"
+              /><span class="tile-label">Exams</span></a
+            >
+            <a href="rms.html" class="tile"
+              ><img
+                src="images/rms.png"
+                alt="RMS Status Icon"
+                class="tile-image"
+              /><span class="tile-label">RMS Status</span></a
+            >
+            <a href="events.html" class="tile"
+              ><img
+                src="images/events.png"
+                alt="Events Icon"
+                class="tile-image"
+              /><span class="tile-label">Events</span></a
+            >
+            <a href="10thrives.html" class="tile"
+              ><span class="tile-badge">0</span
+              ><img
+                src="images/thrive.png"
+                alt="10 to Thrive Icon"
+                class="tile-image"
+              /><span class="tile-label">10 to Thrive</span></a
+            >
+            <a href="backtobasics.html" class="tile"
+              ><span class="tile-badge">2</span
+              ><img
+                src="images/btb.png"
+                alt="Back to Basics Icon"
+                class="tile-image"
+              /><span class="tile-label">Back to Basics</span></a
+            >
+            <a href="hostelleaveslip.html" class="tile"
+              ><span class="tile-badge">X</span
+              ><img
+                src="images/manage.png"
+                alt="Hostel leave Slip Icon"
+                class="tile-image"
+              /><span class="tile-label">Hostel leave Slip</span></a
+            >
+            <a href="#" id="mess-scanner-tile" class="tile"
+              ><span class="tile-badge">X</span
+              ><img
+                src="images/manage.png"
+                alt="Mess Food Scanner Icon"
+                class="tile-image"
+              /><span class="tile-label">Mess Food Scanner</span></a
+            >
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active"
+        ><i class="bx bx-grid-alt"></i><span>Dashboard</span></a
+      >
+      <a href="happenings.html" class="nav-item"
+        ><i class="bx bx-news"></i><span>Happenings</span></a
+      >
+      <a href="lpurms.html" class="nav-item"
+        ><i class="bx bx-check-square"></i><span>RMS</span></a
+      >
+      <a href="#" class="nav-item"
+        ><i class="bx bx-list-ol"></i><span>Quick Quiz</span></a
+      >
+    </nav>
+
+    <div id="mess-coupon-page" class="full-page hidden">
+      <header class="mess-coupon-header">
+        <i class="bx bx-arrow-back icon" id="back-to-dashboard-from-mess"></i>
+        <span class="title">Mess Coupon</span>
+        <span class="link">Meal History</span>
+      </header>
+      <main class="mess-coupon-page-content">
+        <div class="mess-profile-card">
+          <img
+            src="images/avdesh.png"
+            alt="Profile Picture"
+            class="profile-pic"
+          />
+          <h2 class="name">Avdesh Jadon</h2>
+
+          <div class="detail">
+            <span class="detail-label">Father's Name</span>
+            Kumar Pal Singh (8340138202)
+          </div>
+          <div class="detail">
+            <span class="detail-label">Mother's Name</span>
+            Suman Devi (8340138202)
+          </div>
+          <div class="detail">
+            <span class="detail-label">Program Name</span>
+            P132:B.Tech. (Computer Science and Engineering)(2023)
+          </div>
+          <div class="detail">
+            <span class="detail-label">Hostel</span>
+            Boys Apartment- B817-Bed D (Apt AC Four Seater (With Pantry)) Dear
+            Student(12319278)
+          </div>
+        </div>
+        <div class="mess-meal-selection">
+          <p class="scan-instruction">
+            Tap on the meal name to scan and avail food.
+          </p>
+          <div class="meal-buttons-container">
+            <button class="meal-button">
+              <span>Breakfast</span> <i class="bx bx-right-arrow-alt"></i>
+            </button>
+            <button class="meal-button">
+              <span>Lunch</span> <i class="bx bx-right-arrow-alt"></i>
+            </button>
+            <button class="meal-button dinner-btn">
+              <span>Dinner</span> <i class="bx bx-right-arrow-alt"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="camera-scanner-page" class="full-page camera-scanner-page hidden">
+      <video id="video-stream" playsinline></video>
+      <div class="viewfinder"><div class="center-line"></div></div>
+      <p class="scanner-instruction">
+        Place barcode inside the viewfinder to scan.
+      </p>
+    </div>
+
+    <div id="loading-page" class="full-page loading-page hidden">
+      <div class="loading-container">
+        <img src="images/seal.svg" alt="University Seal" class="loading-seal" />
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <div id="mess-pass-page" class="full-page hidden">
+      <header class="page-header">
+        <h1>Mess Pass</h1>
+        <i class="bx bx-x icon" id="back-to-dashboard-from-pass"></i>
+      </header>
+      <main class="mess-pass-page-content">
+        <div class="mess-pass-card">
+          <div id="pass-countdown" class="pass-countdown">30</div>
+          <div class="pass-header">
+            <img src="images/avdesh.png" alt="Profile Pic" />
+            <div class="info">
+              <h2 id="pass-meal-type">Lunch</h2>
+              <p id="pass-reg-no">12319278</p>
+              <p id="pass-name">Avdesh Jadon</p>
+              <p id="pass-location">Mess-1 B-8</p>
+            </div>
+          </div>
+          <p id="pass-program">
+            P132:B.Tech. (Computer Science and Engineering) (2023)
+          </p>
+          <div class="pass-time">
+            <span id="pass-date">Oct 18, 2025</span>
+            <span id="pass-time">04:05 PM</span>
+          </div>
+          <div class="meal-approved">Meal Accepted</div>
+          <div class="accepted-video-container">
+            <video
+              id="accepted-video"
+              class="accepted-video"
+              src="videos/accept.mp4"
+              loop
+              muted
+              playsinline
+            ></video>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="tokens-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <span id="modal-close-btn" class="modal-close">&times;</span>
+        <h2>Available Tokens</h2>
+        <div class="token-display">
+          <i class="bx bxs-coin-stack"></i>
+          <p id="modal-token-count">0</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="alert-modal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <h3 id="alert-modal-title">Alert</h3>
+        <p id="alert-modal-message"></p>
+        <button id="alert-modal-ok-btn" class="cta-button">OK</button>
+      </div>
+    </div>
+
+    <script
+      src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+      type="module"
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"
+      type="module"
+    ></script>
+    <script src="registration.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.4/umd/zxing-browser.min.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+      (function () {
+        const navItems = document.querySelectorAll(".bottom-nav .nav-item");
+        if (!navItems.length) return;
+        const currentFile = (
+          location.pathname.split("/").pop() || "index.html"
+        ).toLowerCase();
+
+        function setActiveByLocation() {
+          navItems.forEach((a) => {
+            const href = a.getAttribute("href") || "";
+            const target = (
+              href === "#" ? "index.html" : href.split("/").pop()
+            ).toLowerCase();
+            a.classList.toggle("active", target === currentFile);
+          });
+        }
+
+        navItems.forEach((a) => {
+          a.addEventListener("click", (e) => {
+            navItems.forEach((n) => n.classList.remove("active"));
+            a.classList.add("active");
+
+            if (a.getAttribute("href") === "#") {
+              e.preventDefault();
+              history.pushState(null, "", "index.html");
+            }
+          });
+        });
+
+        setActiveByLocation();
+      })();
+    </script>
+
+    <script>
+      (function () {
+        async function renderTodaysTimetable() {
+          const scroller = document.querySelector(
+            ".timetable-section .horizontal-scroll-container"
+          );
+          if (!scroller) return;
+
+          const days = [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+          ];
+          const dayKey = days[new Date().getDay()];
+          const dayLabel = dayKey.charAt(0).toUpperCase() + dayKey.slice(1);
+
+          try {
+            const resp = await fetch("timetable.html", { cache: "no-store" });
+            if (!resp.ok) throw new Error("Failed to fetch timetable.html");
+            const html = await resp.text();
+
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            const content = doc.querySelector(`#content-${dayKey}`);
+            const grid = content
+              ? content.querySelector(".timetable-grid")
+              : null;
+            const slotCards = grid
+              ? Array.from(grid.querySelectorAll(".time-slot-card"))
+              : [];
+
+            if (!slotCards.length) {
+              scroller.innerHTML = `
+                <div class="timetable-card" style="cursor:pointer">
+                  <div class="card-body">
+                    <div class="card-text">
+                      <span class="course-code">No classes</span>
+                      <span class="room-number">Enjoy your ${dayLabel}</span>
+                      <div class="divider-line"></div>
+                    </div>
+                    <div class="card-icon">
+                      <img src="images/book.png" alt="Course Book" class="card-icon-img" />
+                    </div>
+                  </div>
+                  <div class="card-header">${dayLabel}</div>
+                </div>`;
+              return;
+            }
+
+            const cardsHTML = slotCards
+              .map((slot) => {
+                const time = (
+                  slot.querySelector(".card-header")?.textContent || ""
+                ).trim();
+                const detail = (
+                  slot.querySelector(".card-body")?.textContent || ""
+                ).trim();
+
+                let course =
+                  (detail.match(/C:([A-Za-z0-9]+)/) || [])[1] ||
+                  (detail.match(/[A-Z]{2,}\d{2,}/) || [])[0] ||
+                  "N/A";
+                let room = (detail.match(/R:\s*([^/]+)/) || [])[1];
+                room = room ? room.trim() : "—";
+
+                return `
+                <div class="timetable-card" style="cursor:pointer">
+                  <div class="card-body">
+                    <div class="card-text">
+                      <span class="course-code">${course}</span>
+                      <span class="room-number">${room}</span>
+                      <div class="divider-line"></div>
+                    </div>
+                    <div class="card-icon">
+                      <img src="images/book.png" alt="Course Book" class="card-icon-img" />
+                    </div>
+                  </div>
+                  <div class="card-header">${time}</div>
+                </div>`;
+              })
+              .join("");
+
+            scroller.innerHTML = cardsHTML;
+          } catch (err) {
+            console.warn("Unable to load timetable:", err);
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", renderTodaysTimetable);
+        } else {
+          renderTodaysTimetable();
+        }
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const scroller = document.querySelector(".horizontal-scroll-container");
+        if (!scroller) return;
+        scroller.addEventListener("click", function (e) {
+          const card = e.target.closest(".timetable-card");
+          if (card) {
+            window.location.href = "timetable.html";
+          }
+        });
+        document
+          .querySelectorAll(".timetable-card")
+          .forEach((c) => (c.style.cursor = "pointer"));
+      })();
+    </script>
+  </body>
+</html>
