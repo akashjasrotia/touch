@@ -121,12 +121,12 @@
           ><i class="bx bx-arrow-back icon"></i
         ></a>
         <h1>Profile</h1>
-        <i class="bx bx-qr icon"></i>
+        <button id="edit-profile-btn" style="background:transparent;border:none;color:white;font-size:16px;cursor:pointer;">Edit</button>
       </header>
       <main class="profile-page-content">
         <div class="profile-header-card">
-          <img src="images/avdesh.png" alt="User Profile Picture" />
-          <h2>Avdesh Jadon</h2>
+          <img src="images/akash.jpg" alt="User Profile Picture" />
+          <h2>Akash Jasrotia</h2>
           <p>P132:B.Tech. (Computer Science and Engineering)(2023)</p>
         </div>
         <div class="profile-details-container">
@@ -134,35 +134,35 @@
             <h3>Basic</h3>
             <div class="profile-field">
               <div class="field-label">Father's Name</div>
-              <div class="field-value">Kumarpal Jadon</div>
+              <div class="field-value">Kamal Kumar</div>
             </div>
             <div class="profile-field">
               <div class="field-label">Mother's Name</div>
-              <div class="field-value">Suman Devi</div>
+              <div class="field-value">Sharda rani</div>
             </div>
             <div class="profile-field">
               <div class="field-label">Permanent Address</div>
               <div class="field-value">
-                Jatpura, Agra - 283111- Distt:Agra -(Uttar Pradesh) - India
+                garhdiwala, Hoshiarpur - 144222- Distt:Hoshiarpur -(Punjab) - India
               </div>
             </div>
             <div class="profile-field">
               <div class="field-label">Correspondence Address</div>
               <div class="field-value">
-                Jatpura, Agra - 283111- Distt:Agra -(Uttar Pradesh) - India
+                garhdiwala, Hoshiarpur - 144222- Distt:Hoshiarpur -(Punjab) - India
               </div>
             </div>
             <div class="profile-field">
               <div class="field-label">Contact No.</div>
-              <div class="field-value">7302090526</div>
+              <div class="field-value">7087792964</div>
             </div>
             <div class="profile-field">
               <div class="field-label">Email</div>
-              <div class="field-value">avdeshjadon2003@gmail.com</div>
+              <div class="field-value">akashjasrotia2005@gmail.com</div>
             </div>
             <div class="profile-field">
               <div class="field-label">Date of Birth</div>
-              <div class="field-value">06 Jul 2006</div>
+              <div class="field-value">07 Feb 2005</div>
             </div>
             <div class="profile-field">
               <div class="field-label">Gender</div>
@@ -187,7 +187,7 @@
             </div>
             <div class="profile-field">
               <div class="field-label">Section</div>
-              <div class="field-value">K23SE</div>
+              <div class="field-value">K23VG</div>
             </div>
             <div class="profile-field">
               <div class="field-label">TPC</div>
@@ -219,6 +219,50 @@
             loader.classList.add("hidden");
           }, 500);
         }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const editBtn = document.getElementById("edit-profile-btn");
+        if (!editBtn) return;
+        let isEditing = false;
+        editBtn.addEventListener("click", () => {
+          isEditing = !isEditing;
+          if (isEditing) {
+            editBtn.textContent = "Save";
+            document.querySelectorAll(".profile-field").forEach((field) => {
+              const valDiv = field.querySelector(".field-value");
+              if (valDiv) {
+                const text = valDiv.textContent.trim();
+                valDiv.innerHTML = `<input type="text" class="edit-input" value="${text}" style="width:100%; border:1px solid #ccc; padding:4px; border-radius:4px; font-size:0.9rem; font-family:inherit; color:#333;" />`;
+              }
+            });
+            const h2 = document.querySelector(".profile-header-card h2");
+            if (h2)
+              h2.innerHTML = `<input type="text" id="edit-name-input" value="${h2.textContent.trim()}" style="text-align:center; font-size:1.5rem; font-weight:600; background:rgba(255,255,255,0.2); border:1px dashed #fff; color:#fff; border-radius:4px;" />`;
+          } else {
+            editBtn.textContent = "Edit";
+            const newData = { ...window.UserManager.get() };
+            document.querySelectorAll(".profile-field").forEach((field) => {
+              const labelDiv = field.querySelector(".field-label");
+              const input = field.querySelector(".edit-input");
+              if (labelDiv && input) {
+                const label = labelDiv.textContent.trim();
+                const val = input.value.trim();
+                if (label === "Father's Name") newData.fname = val;
+                if (label === "Mother's Name") newData.mname = val;
+                if (label === "Contact No.") newData.phone = val;
+                if (label === "Email") newData.email = val;
+                if (label === "Date of Birth") newData.dob = val;
+                if (label === "Section") newData.section = val;
+                if (label === "Program") newData.program = val;
+              }
+            });
+            const h2Inp = document.getElementById("edit-name-input");
+            if (h2Inp) newData.name = h2Inp.value.trim();
+            window.UserManager.save(newData);
+          }
+        });
       });
     </script>
   </body>

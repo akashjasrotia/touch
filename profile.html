@@ -121,7 +121,7 @@
           ><i class="bx bx-arrow-back icon"></i
         ></a>
         <h1>Profile</h1>
-        <i class="bx bx-qr icon"></i>
+        <button id="edit-profile-btn" style="background:transparent;border:none;color:white;font-size:16px;cursor:pointer;">Edit</button>
       </header>
       <main class="profile-page-content">
         <div class="profile-header-card">
@@ -219,6 +219,50 @@
             loader.classList.add("hidden");
           }, 500);
         }
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const editBtn = document.getElementById("edit-profile-btn");
+        if (!editBtn) return;
+        let isEditing = false;
+        editBtn.addEventListener("click", () => {
+          isEditing = !isEditing;
+          if (isEditing) {
+            editBtn.textContent = "Save";
+            document.querySelectorAll(".profile-field").forEach((field) => {
+              const valDiv = field.querySelector(".field-value");
+              if (valDiv) {
+                const text = valDiv.textContent.trim();
+                valDiv.innerHTML = `<input type="text" class="edit-input" value="${text}" style="width:100%; border:1px solid #ccc; padding:4px; border-radius:4px; font-size:0.9rem; font-family:inherit; color:#333;" />`;
+              }
+            });
+            const h2 = document.querySelector(".profile-header-card h2");
+            if (h2)
+              h2.innerHTML = `<input type="text" id="edit-name-input" value="${h2.textContent.trim()}" style="text-align:center; font-size:1.5rem; font-weight:600; background:rgba(255,255,255,0.2); border:1px dashed #fff; color:#fff; border-radius:4px;" />`;
+          } else {
+            editBtn.textContent = "Edit";
+            const newData = { ...window.UserManager.get() };
+            document.querySelectorAll(".profile-field").forEach((field) => {
+              const labelDiv = field.querySelector(".field-label");
+              const input = field.querySelector(".edit-input");
+              if (labelDiv && input) {
+                const label = labelDiv.textContent.trim();
+                const val = input.value.trim();
+                if (label === "Father's Name") newData.fname = val;
+                if (label === "Mother's Name") newData.mname = val;
+                if (label === "Contact No.") newData.phone = val;
+                if (label === "Email") newData.email = val;
+                if (label === "Date of Birth") newData.dob = val;
+                if (label === "Section") newData.section = val;
+                if (label === "Program") newData.program = val;
+              }
+            });
+            const h2Inp = document.getElementById("edit-name-input");
+            if (h2Inp) newData.name = h2Inp.value.trim();
+            window.UserManager.save(newData);
+          }
+        });
       });
     </script>
   </body>

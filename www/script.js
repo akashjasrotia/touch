@@ -228,6 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (seconds <= 0) {
         clearInterval(countdownInterval);
         countdownElement.textContent = "0";
+        const currentMeal = document.getElementById("pass-meal-type").textContent;
+        hideAllPages();
+        startScanFlow(currentMeal);
       }
     }, 1000);
   }
@@ -308,4 +311,87 @@ document.addEventListener("DOMContentLoaded", function () {
       { passive: true }
     );
   })();
+
+  // --- GLOBAL USER MANAGER ---
+  window.UserManager = {
+    defaultData: {
+      name: "Akash Jasrotia",
+      pic: "images/akash.jpg",
+      regNo: "12319278",
+      program: "P132:B.Tech. (Computer Science and Engineering)(2023)",
+      fname: "Kamal Kumar",
+      mname: "Sharda rani",
+      phone: "7087792964",
+      email: "akashjasrotia2005@gmail.com",
+      dob: "07 Feb 2005",
+      section: "K23VG"
+    },
+    init() {
+      let stored = localStorage.getItem('touchUser');
+      if (!stored) this.save(this.defaultData);
+      this.apply();
+    },
+    get() {
+      try {
+        return JSON.parse(localStorage.getItem('touchUser')) || this.defaultData;
+      } catch(e) { return this.defaultData; }
+    },
+    save(data) {
+      localStorage.setItem('touchUser', JSON.stringify(data));
+      this.apply();
+    },
+    apply() {
+      const data = this.get();
+      
+      document.querySelectorAll('.profile-name, .name, #pass-name, .profile-header-card h2, .detail-value').forEach(el => {
+        if(el.classList.contains('detail-value') && el.textContent.includes('Jasrotia')) {
+          el.textContent = data.name;
+        } else if (!el.classList.contains('detail-value')) {
+          el.textContent = data.name;
+        }
+      });
+      document.querySelectorAll('.profile-id, #pass-reg-no').forEach(el => el.textContent = data.regNo);
+      document.querySelectorAll('.profile-picture, .profile-pic, .profile-header-card img, .pass-header img, img[alt="User Profile Picture"], img[alt="Profile Pic"]').forEach(img => img.src = data.pic);
+      
+      document.querySelectorAll('.profile-field').forEach(field => {
+        const label = field.querySelector('.field-label');
+        const value = field.querySelector('.field-value');
+        if (!label || !value) return;
+        const text = label.textContent.trim();
+        if (text === "Father's Name") {
+          value.textContent = field.classList.contains('bottom-pass-field') ? `${data.fname} (${data.phone})` : data.fname;
+        }
+        if (text === "Mother's Name") {
+          value.textContent = field.classList.contains('bottom-pass-field') ? `${data.mname} ()` : data.mname;
+        }
+        if (text === "Contact No.") value.textContent = data.phone;
+        if (text === "Email") value.textContent = data.email;
+        if (text === "Date of Birth") value.textContent = data.dob;
+        if (text === "Section") value.textContent = data.section;
+        if (text === "Program" || text === "Session") value.textContent = data.program;
+      });
+
+      document.querySelectorAll('.detail').forEach(detail => {
+        const label = detail.querySelector('.detail-label');
+        if (!label) return;
+        const text = label.textContent.trim();
+        let textNode = Array.from(detail.childNodes).find(n => n.nodeType === 3 && n.textContent.trim().length > 0);
+        if (textNode) {
+          if (text === "Father's Name") textNode.textContent = ` ${data.fname} ` + (textNode.textContent.match(/\(.*\)/) || [''])[0];
+          if (text === "Mother's Name") textNode.textContent = ` ${data.mname} ` + (textNode.textContent.match(/\(.*\)/) || [''])[0];
+          if (text === "Program Name") textNode.textContent = ` ${data.program}`;
+        }
+      });
+    }
+  };
+
+  UserManager.init();
+
 });
+
+// --- PWA SERVICE WORKER REGISTRATION ---
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration failed:', err));
+  });
+}
