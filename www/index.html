@@ -17,6 +17,13 @@
       rel="stylesheet"
     />
 
+    <link rel="manifest" href="manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="LPU Touch" />
+    <meta name="theme-color" content="#e37644" />
+    <link rel="apple-touch-icon" href="images/seal.svg" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="transparent.css" />
 
@@ -182,6 +189,9 @@
           </nav>
         </div>
         <div class="sidebar-footer">
+          <button id="pwa-install-btn" class="logout-button" style="display:none; margin-bottom:8px; background:#e37644; color:#fff; border:none;">
+            <i class="bx bx-download"></i> Install App
+          </button>
           <button class="logout-button">
             LOGOUT <i class="bx bx-log-out"></i>
           </button>

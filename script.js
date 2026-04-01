@@ -228,9 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
       if (seconds <= 0) {
         clearInterval(countdownInterval);
         countdownElement.textContent = "0";
-        const currentMeal = document.getElementById("pass-meal-type").textContent;
         hideAllPages();
-        startScanFlow(currentMeal);
+        showPage(messCouponPage);
       }
     }, 1000);
   }

@@ -1,0 +1,33 @@
+{
+  "name": "LPU Touch",
+  "short_name": "Touch",
+  "description": "LPU Student Dashboard – Mess, Attendance, Results & more",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#e37644",
+  "icons": [
+    {
+      "src": "images/seal.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/seal.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "images/seal.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "utilities"],
+  "lang": "en-IN"
+}

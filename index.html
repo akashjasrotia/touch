@@ -497,89 +497,59 @@
     </div>
 
     <div id="mess-pass-page" class="full-page hidden">
-      <header class="page-header">
-        <h1>Mess Pass</h1>
+      <header class="page-header mess-pass-header">
+        <h1 class="header-title">Mess Pass</h1>
         <i class="bx bx-x icon" id="back-to-dashboard-from-pass"></i>
       </header>
-      <main class="mess-pass-page-content" style="padding:10px;">
-        <div class="mess-pass-card new-design" style="padding:0; background-color:#f8f9fa; border-radius:15px; overflow:hidden;">
-          <!-- Top section -->
-          <div class="pass-top-section" style="padding: 20px 20px 15px 20px; position:relative; background:#fff;">
-            <div id="pass-countdown" class="pass-countdown" style="top:12px; right:12px; font-size:13px; width:32px; height:32px; background:#b2b2b2; color:#000;">30</div>
-            
-            <div class="pass-header-info" style="display:flex; align-items:flex-start; gap:15px; margin-bottom:15px;">
-              <img src="images/akash.jpg" alt="Profile Pic" class="pass-profile-pic" style="width:115px; height:115px; border-radius:50%; object-fit:cover; box-shadow:0 4px 8px rgba(0,0,0,0.3); border:none;" />
-              <div class="pass-text-details" style="padding-top:10px;">
-                <h2 id="pass-meal-type" style="margin:0 0 5px; font-size:1.6rem; font-weight:800; color:#000; letter-spacing:-0.5px;">Lunch</h2>
-                <p id="pass-reg-no" style="margin:0 0 2px; font-weight:700; color:#000; font-size:0.95rem;">12319278</p>
-                <p id="pass-name" style="margin:0 0 2px; font-weight:700; color:#000; font-size:0.95rem;">Akash Jasrotia</p>
-                <p id="pass-location" style="margin:0; font-weight:700; color:#000; font-size:0.95rem;">Mess-Centre-01</p>
+      <main class="mess-pass-page-content">
+        <div class="mess-pass-container">
+          <div id="pass-countdown" class="pass-timer-circle">30</div>
+          
+          <div class="pass-card-main">
+            <div class="pass-squares-row">
+              <div class="pass-square-item">
+                <div class="image-wrapper">
+                  <img src="images/akash.jpg" alt="Profile Pic" class="pass-profile-pic" />
+                </div>
+                <div class="square-details">
+                  <p id="pass-reg-no" class="bold-text">12319278</p>
+                  <p id="pass-name" class="bold-text">Akash Jasrotia</p>
+                </div>
+              </div>
+              
+              <div class="pass-square-item">
+                <div class="image-wrapper">
+                  <img src="images/seal.svg" alt="QR Code" class="pass-qr-code" />
+                </div>
+                <div class="square-details">
+                  <p id="pass-meal-type" class="bold-text">Lunch</p>
+                  <p id="pass-location" class="bold-text">Mess-2 BH-1</p>
+                </div>
               </div>
             </div>
-            
-            <p id="pass-program" style="margin:0 0 20px; font-weight:700; color:#333; font-size:0.9rem; line-height:1.4;">
-              P132:B.Tech. (Computer Science and Engineering)(2023)
-            </p>
-            
-            <div class="pass-time-row" style="display:flex; justify-content:space-between; padding:0 20px; margin-bottom:25px; font-weight:700; color:#333; font-size:1.05rem;">
-              <span id="pass-date">Mar 23, 2026</span>
-              <span id="pass-time">01:17 PM</span>
+
+            <div class="pass-program-section">
+              <p id="pass-program" class="program-text">
+                P132:B.Tech. (Computer Science and Engineering)(2023)
+              </p>
+              <p class="assigned-mess-text">Your Assigned Mess - <span id="pass-assigned-mess">Mess-2 BH-1</span></p>
             </div>
-            
-            <div class="meal-approved-box" style="text-align:center;">
-              <div style="display:inline-flex; align-items:center; justify-content:center; width:100%; position:relative;">
-                <span style="color:#41b933; font-size:1.65rem; font-weight:800; letter-spacing:0.5px;">Meal Approved</span>
-                <div style="position:absolute; right:10px; width:18px; height:18px; border-radius:50%; border:2px solid #ccc; background:#e8e8e8;"></div>
-              </div>
-              <div style="margin-top:2px;">
-                <span style="display:inline-flex; align-items:center; gap:4px; border:1px solid #7c1a1a; color:#000; font-weight:700; font-size:0.75rem; padding:1px 8px; border-radius:12px; background:#fff;">
-                  <i class="bx bxs-star" style="color:#fbc02d;"></i> RATE US
-                </span>
-              </div>
+
+            <div class="pass-datetime-row">
+              <span id="pass-date" class="bold-text">Mar 22, 2026</span>
+              <span id="pass-time" class="bold-text">01:21 PM</span>
+            </div>
+
+            <div class="pass-status-section">
+              <h2 class="meal-approved-text">Meal Approved</h2>
+              <button class="rate-us-btn">
+                <i class="bx bxs-star"></i> RATE US
+              </button>
             </div>
           </div>
 
-          <!-- Blue section -->
-          <div class="pass-blue-section" style="background-color:#2a4478; padding:20px;">
-            <div class="white-square-container" style="background:#fff; width:100%; aspect-ratio:1/1; display:flex; justify-content:center; align-items:center; position:relative;">
-              <video
-                id="accepted-video"
-                class="accepted-video"
-                src="videos/accept.mp4"
-                loop
-                muted
-                playsinline
-                style="width:90%; height:90%; object-fit:contain;"
-              ></video>
-            </div>
-          </div>
-
-          <!-- Details section below blue -->
-          <div class="pass-details-section" style="background:#fff; padding:15px; border-bottom:1px solid #ddd;">
-            <div class="profile-field bottom-pass-field" style="margin-bottom:8px;">
-              <div class="field-label" style="font-weight:700; color:#777; font-size:0.85rem; margin-bottom:0px;">Father's Name</div>
-              <div class="field-value father-name-val" style="font-weight:500; color:#555; font-size:0.9rem;">Kamal Kumar (7087792964)</div>
-            </div>
-            <div class="profile-field bottom-pass-field" style="margin-bottom:8px;">
-              <div class="field-label" style="font-weight:700; color:#777; font-size:0.85rem; margin-bottom:0px;">Mother's Name</div>
-              <div class="field-value mother-name-val" style="font-weight:500; color:#555; font-size:0.9rem;">Sharda rani (7087792964)</div>
-            </div>
-            <div class="profile-field bottom-pass-field" style="margin-bottom:8px;">
-              <div class="field-label" style="font-weight:700; color:#777; font-size:0.85rem; margin-bottom:0px;">Session</div>
-              <div class="field-value" style="font-weight:500; color:#555; font-size:0.9rem;">P132:B.Tech. (Computer Science and Engineering)(2023)</div>
-            </div>
-            <div class="profile-field bottom-pass-field" style="margin-bottom:0;">
-              <div class="field-label" style="font-weight:700; color:#777; font-size:0.85rem; margin-bottom:0px;">Hostel</div>
-              <div class="field-value" style="font-weight:500; color:#555; font-size:0.9rem;">Boys Apartment- B817-Bed D (Apt AC Four Seater)</div>
-            </div>
-          </div>
-
-          <!-- Verification Code box -->
-          <div style="background:#fff; padding:15px;">
-            <div class="verification-code-box" style="border:2px solid #000; border-radius:12px; display:flex; justify-content:space-between; padding:12px 18px; font-weight:800; font-size:1.1rem; color:#000;">
-              <span>Verification Code</span>
-              <span>18313014</span>
-            </div>
+          <div class="pass-bottom-area">
+            <div class="bottom-white-box"></div>
           </div>
         </div>
       </main>
